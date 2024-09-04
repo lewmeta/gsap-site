@@ -14,7 +14,9 @@ export default function Template({ children }: { children: React.ReactNode }) {
                 id="transition-element"
                 className="w-full h-screen bg-black z-100 fixed top-0 left-0"
             ></div>
-            {children}
+            <div className="w-screen">
+                {children}
+            </div>
         </div>
     );
 }

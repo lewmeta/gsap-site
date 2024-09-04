@@ -93,8 +93,10 @@ export const Menu = () => {
                             <TransitionLink href={item.path} label={item.label} key={index} />
                         ))}
                     </div>
-                    <div className="cursor-pointer" onClick={toggleMenu}>
-                        <p>Open</p>
+                    <div className="cursor-pointer flex flex-col gap-2" onClick={toggleMenu}>
+                        <div className="!w-[20px] h-[1.5px] bg-black" />
+                        <div className="!w-[20px] h-[1.5px] bg-black" />
+                        <div className="!w-[20px] h-[1.5px] bg-black" />
                     </div>
                 </div>
             </div>
@@ -121,11 +123,7 @@ export const Menu = () => {
                                         onClick={toggleMenu}
                                         className="menu-link-item-holder"
                                     >
-                                        <Link href={link.path}
-                                            className="text-[65px] leading-[70px]"
-                                        >
-                                            {link.label}
-                                        </Link>
+                                        <TransitionLink href={link.path} label={link.label} key={index} />
                                     </div>
                                 </div>
                             ))}
