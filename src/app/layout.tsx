@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Menu />
-        <main className="w-full h-full min-h-screen flex items-center justify-center">
+        <main className="w-full bg-green-600 h-full min-h-screen flex items-center justify-center">
           {children}
         </main>
       </body>

@@ -15,6 +15,20 @@ body {
 .menu-overlay {
   clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
 }
+.menu-overlays {
+  height: 80px;
+  background: #fffce1;
+  color: #0e100f;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  transition: ease 0.4s;
+}
 
 @layer utilities {
   .text-balanc {

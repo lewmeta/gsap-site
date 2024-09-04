@@ -4,6 +4,8 @@ import { useState, useRef, useEffect } from "react"
 import Link from "next/link"
 import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import TransitionLink from "../transitionLink"
 
 type MenuLinksProps = {
     path: string;
@@ -19,14 +21,15 @@ const menuLinks = [
 ] as MenuLinksProps[];
 
 export const Menu = () => {
-    const container = useRef(null);
+
+    const container = useRef<HTMLDivElement | null>(null);
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
-    const tl = useRef(null) as any;
+    const tl = useRef<gsap.core.Timeline | null>(null);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
-    }
+    };
 
     useGSAP(
         () => {
@@ -47,28 +50,47 @@ export const Menu = () => {
                 });
         },
         { scope: container }
-    )
+    );
 
     useEffect(() => {
-        if (isMenuOpen) {
-            tl.current.play();
-        } else {
-            tl.current.reverse()
+        gsap.registerPlugin(ScrollTrigger);
+
+        const showAnim = gsap.from(`.menu-overlays`, {
+            yPercent: -100,
+            paused: true,
+            duration: 0.2,
+        }).progress(1);
+
+        ScrollTrigger.create({
+            start: 'top top',
+            end: 'max',
+            onUpdate: (self) => {
+                self.direction === -1 ? showAnim.play() : showAnim.reverse();
+            },
+        });
+    }, []);
+
+    useEffect(() => {
+        if (tl.current) {
+            if (isMenuOpen) {
+                tl.current.play();
+            } else {
+                tl.current.reverse();
+            }
         }
-    }, [isMenuOpen])
+    }, [isMenuOpen]);
+
     return (
         <div
             className="menu-container"
             ref={container}
         >
-            <div className="fixed top-0 left-0 right-0 h-auto w-full bg-transparent">
+            <div className="fixed top-0 left-0 right-0 h-auto w-full bg-transparent menu-overlays">
                 <div className="flex items-center p-5 px-4 justify-between w-full">
                     <div className="font-bold text-lg">Lewis.</div>
                     <div className="flex gap-6">
                         {menuLinks.map((item, index) => (
-                            <Link href={item.path} key={index} className="">
-                                {item.label}
-                            </Link>
+                            <TransitionLink href={item.path} label={item.label} key={index} />
                         ))}
                     </div>
                     <div className="cursor-pointer" onClick={toggleMenu}>
