@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
+import { Syncopate } from "next/font/google";
+
 import { Menu } from "@/components/navigation/menu";
 
-const inter = Inter({ subsets: ["latin"] });
+import "./globals.css";
+
+const inter = Syncopate({ subsets: ["latin"], weight: "400" });
 
 export const metadata: Metadata = {
   title: "GSAP animations",
@@ -19,7 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Menu />
-        <main className="w-full h-full min-h-screen">
+        <main className="w-full h-full min-h-screen flex items-center justify-center">
           {children}
         </main>
       </body>

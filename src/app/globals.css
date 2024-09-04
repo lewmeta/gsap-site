@@ -13,18 +13,6 @@ body {
 }
 
 .menu-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  padding: 2em;
-  display: flex;
-  background: #c5fb45;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 2;
-  display: flex;
   clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
 }
 

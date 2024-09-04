@@ -63,7 +63,7 @@ export const Menu = () => {
         >
             <div className="fixed top-0 left-0 right-0 h-auto w-full bg-transparent">
                 <div className="flex items-center p-5 px-4 justify-between w-full">
-                    <div className="">LewMeta.</div>
+                    <div className="font-bold text-lg">Lewis.</div>
                     <div className="flex gap-6">
                         {menuLinks.map((item, index) => (
                             <Link href={item.path} key={index} className="">
@@ -78,7 +78,7 @@ export const Menu = () => {
             </div>
             <div className="menu-overlay fixed top-0 left-0 h-screen w-full bottom-0 flex items-start justify-between p-[2em] bg-[#c5fb45]">
                 <div className="menu-logo h-full relative">
-                    <Link href={"/"}>Lewmeta</Link>
+                    <Link href={"/"} onClick={toggleMenu}>Lewis.</Link>
                     <div className="menu-overlay-bar">
                         <div className="menu-close  absolute bottom-0" onClick={toggleMenu}>
                             <div className="menu-close-icons">
